@@ -35,7 +35,7 @@ def gather_memes(page_number):
     for meme_template in meme_templates:
         meme_name = meme_template.find('strong')
 
-        if not meme_name or meme_name == 'El Shaddai':
+        if not meme_name or meme_name.text == 'El Shaddai':
             continue
 
         with open(
@@ -48,9 +48,15 @@ def gather_memes(page_number):
                     )
                 ), 'wb') as template_file:
 
-            template_file.write(
-                requests.get(meme_template.find('img')['data-src']).content
-            )
+            while True:
+                try:
+                    template_file.write(
+                        requests.get(meme_template.find('img')['data-src']).content
+                    )
+                    break
+
+                except requests.exceptions.ConnectionError:
+                    pass
 
     print('Finished page #{0}'.format(page_number))
 
