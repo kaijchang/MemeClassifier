@@ -1,6 +1,6 @@
 # MemeClassifier
 
-# Installation
+## Installation
 
 Install dependencies: `pip3 install -r requirements.txt`.
 
@@ -8,9 +8,8 @@ Scrape meme templates from [https://knowyourmeme.com](https://knowyourmeme.com):
 
 Build Cython extension: `python3 setup.py build_ext --inplace`
 
-# Example
-
-![example.png](https://github.com/kajchang/MemeClassifier/raw/master/example.png)
+## Example
+<img src="https://github.com/kajchang/MemeClassifier/raw/master/example.png" width="250">
 
 ```python
 from classifier import classify_meme
