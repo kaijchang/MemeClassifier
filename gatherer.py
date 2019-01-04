@@ -30,7 +30,7 @@ def gather_memes(page_number):
     for meme_template in meme_templates:
         meme_name = meme_template.find('strong')
 
-        if not meme_name:
+        if not meme_name or meme_name == 'El Shaddai':
             continue
 
         with open(
@@ -41,6 +41,7 @@ def gather_memes(page_number):
                         .replace('\n', ' ') if c in valid_chars
                     )
                 ), 'wb') as template_file:
+
             template_file.write(
                 requests.get(meme_template.find('img')['data-src']).content
             )

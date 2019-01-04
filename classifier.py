@@ -7,13 +7,9 @@ from percent_white_pixels import percent_white_pixels
 def classify_meme(image):
     results = {}
 
-    meme_to_classify = cv2.cvtColor(cv2.imread(image), cv2.COLOR_BGR2GRAY)
+    meme_to_classify = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     for file in os.listdir('templates'):
-        # this is a weird transparent image that i don't want to deal with rn
-        if file[:-4] == 'El Shaddai':
-            continue
-
         meme_template = cv2.imread('templates/{0}'.format(file))
 
         # some of the templates are gif encoded
