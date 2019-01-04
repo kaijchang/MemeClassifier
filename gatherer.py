@@ -4,10 +4,15 @@ from bs4 import BeautifulSoup
 import os
 import shutil
 
-if os.path.exists('templates'):
-    shutil.rmtree('templates')
+templates_folder = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)),
+    'templates'
+)
 
-os.mkdir('templates')
+if os.path.exists(templates_folder):
+    shutil.rmtree(templates_folder)
+
+os.mkdir(templates_folder)
 
 current_page = 1
 
@@ -34,7 +39,8 @@ def gather_memes(page_number):
             continue
 
         with open(
-                'templates/{0}.jpg'.format(
+                '{0}/{1}.jpg'.format(
+                    templates_folder,
                     ''.join(
                         c for c in meme_name
                         .text
