@@ -3,18 +3,23 @@ import os
 
 from percent_white_pixels import percent_white_pixels
 
+templates_folder = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)),
+    'templates'
+)
+
 
 def classify_meme(image):
     results = {}
 
     meme_to_classify = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    for file in os.listdir('templates'):
-        meme_template = cv2.imread('templates/{0}'.format(file))
+    for file in os.listdir(templates_folder):
+        meme_template = cv2.imread('{0}/{1}'.format(templates_folder, file))
 
         # some of the templates are gif encoded
         if meme_template is None:
-            gif = cv2.VideoCapture('templates/{0}'.format(file))
+            gif = cv2.VideoCapture('{0}/{1}'.format(templates_folder, file))
 
             _, meme_template = gif.read()
 
