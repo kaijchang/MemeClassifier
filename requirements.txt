@@ -1,0 +1,4 @@
+requests>=2.20.1
+beautifulsoup4>=4.6.3
+opencv-python>=3.4.4.19
+Cython>=0.29.2
