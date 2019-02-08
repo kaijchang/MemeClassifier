@@ -27,10 +27,7 @@ def classify_meme(image):
         meme_template = cv2.cvtColor(meme_template, cv2.COLOR_BGR2GRAY)
 
         # scale template
-        scaling_factor = meme_to_classify.shape[0] / meme_template.shape[0]
-
-        if meme_to_classify.shape[1] / meme_template.shape[1] < scaling_factor:
-            scaling_factor = meme_to_classify.shape[1] / meme_template.shape[1]
+        scaling_factor = meme_to_classify.shape[1] / meme_template.shape[1]
 
         meme_template = cv2.resize(
             meme_template,
@@ -59,6 +56,6 @@ def classify_meme(image):
         # only count matched colored pixels, not white pixels
         pct_white = percent_white_pixels(match)
 
-        results[file[:-4]] = max_val * 1 - pct_white
+        results[file[:-4]] = max_val * (1 - pct_white)
 
     return results
